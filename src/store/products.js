@@ -1,11 +1,5 @@
 
-let initialState = {
-    categories: [
-        { name: 'electronics', displayName: 'Elecronics' },
-        { name: 'food', displayName: 'Food' },
-        { name: 'clothing', displayName: 'Clothing' },
-    ],
-    products: [
+let initialState = [
         { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 },
         { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15 },
         { name: 'Shirt', category: 'clothing', price: 9.00, inStock: 25 },
@@ -13,52 +7,14 @@ let initialState = {
         { name: 'Apples', category: 'food', price: .99, inStock: 500 },
         { name: 'Eggs', category: 'food', price: 1.99, inStock: 12 },
         { name: 'Bread', category: 'food', price: 2.39, inStock: 90 },
-    ],
-    activeCategory: ''
-};
-
-// export default (state = initialState, action) => {
-
-//     let { type, payload } = action;
-//     switch(type) {
-
-//         case 'ChangeActiveCategory':
-//             console.log("sss");
-//             state.activeCategory = payload;
-//             return state;
-
-//         case "reset":
-//             return initialState;
-
-//             default:
-//         console.log("eeee",type , payload)
-
-//             return state;
-
-//     }
-
-// }
-
-
-// export const ChangeActiveCategory = (categoryName) => {
-//     console.log(categoryName);
-//     return {
-//         type: "ChangeActiveCategory",
-//         payload: categoryName
-//     }
-// }
+];
 
 export default (state = initialState, action) => {
     let { type, payload } = action;
-    console.log(action);
-    console.log("switch");
 
     switch (type) {
-        case 'CATEGORY':
-     console.log("category switch");
-
-            return { ...state, activeCategory: payload }
-
+        case"ADD_TO_CART":
+            state.map( (item) => payload.name===item.name ? { ...item, inStock: item.inStock - 1 } : item  )
         case 'RESET':
             return initialState;
 
@@ -67,20 +23,4 @@ export default (state = initialState, action) => {
     }
 };
 
-export const changeActiveCategory = (name) => {
-    console.log(name);
 
-    return {
-        type: 'CATEGORY',
-        payload: name
-    };
-};
-
-
-
-
-export const reset = () => {
-    return {
-        type: "reset"
-    }
-}

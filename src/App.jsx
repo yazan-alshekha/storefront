@@ -2,11 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './component/Header';
 import Footer from './component/Footer';
-import Categories from './component/mainComponent/Categories';
 import {Provider} from "react-redux";
 import store from "./store/index";
-import CurrentCategory from './component/mainComponent/CurrentCategory';
-import Products from './component/mainComponent/Products';
+import MainComponent from './component/mainComponent/MainComponents';
 
 function App() {
   return (
@@ -15,11 +13,7 @@ function App() {
     <Provider store={store}>
 
       <Header />
-      <main>
-      <Categories/>
-      <CurrentCategory/>
-      <Products/>
-      </main>
+      <MainComponent/>
       <Footer />
     </Provider>
     </>

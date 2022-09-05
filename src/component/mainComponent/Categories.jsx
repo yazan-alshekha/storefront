@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 // import { useDispatch } from "react-redux";
 
-import {reset , changeActiveCategory} from "../../store/products"
+import {reset , changeActiveCategory} from "../../store/categories"
 
 function Categories(props) {
     // const dispatch = useDispatch();
