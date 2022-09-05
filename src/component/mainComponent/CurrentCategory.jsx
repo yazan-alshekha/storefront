@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 
 function CurrentCategory(props) {
-    console.log(props.activeCategory);
     return (
     <>
     <h3>{props.activeCategory}</h3>
