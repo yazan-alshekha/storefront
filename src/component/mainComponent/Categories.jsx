@@ -1,18 +1,25 @@
 import { connect } from "react-redux";
 // import { useDispatch } from "react-redux";
+import {useEffect} from "react";
+import {reset , changeActiveCategory} from "../../store/categories";
+import{getCategories} from "../../store/categories";
 
-import {reset , changeActiveCategory} from "../../store/categories"
+
 
 function Categories(props) {
-    // const dispatch = useDispatch();
+
+    useEffect(() => {
+        props.getCategories();
+    }, [props.categories.categories]);
+    
+        {console.log("categor" , props.categories)}
     return (
         <>
             <h1>Browse our Categories</h1>
             {props.categories.map((category,idx)=>{
                 
                 return (
-                    // <a key={idx} onClick={ ()=> props.changeActiveCategory(category.name) }>{category.displayName}  </a>
-                    <button key={idx} onClick={ ()=> props.changeActiveCategory(category.name) }>{category.displayName}  </button>
+                    <button key={idx} onClick={ ()=> props.changeActiveCategory(category.name) }>{category.name}  </button>
                 );
             })}
         </>
@@ -24,7 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const mapDispatchToProps = { reset, changeActiveCategory }
+const mapDispatchToProps = { reset, changeActiveCategory ,getCategories }
 
 // Instead of exporing our component, export it after it's been connected to the Redux store.
 // export default connect(mapDispatchToProps,mapStateToProps)(Categories)

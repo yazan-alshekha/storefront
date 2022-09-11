@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-
+import {delete_item} from "../../store/cart";
 
 
 function SimpleCart(props) {
@@ -11,7 +11,7 @@ function SimpleCart(props) {
 
                 {props.cartItems.map((item, idx) => {
                     return (
-                        <li key={item.name}>{item.name} <span>X</span></li>
+                        <li key={item.name}>{item.name} <button onClick={ ()=> {props.delete_item(item.name)} } >X</button></li>
 
                     )
                 })}
@@ -25,4 +25,7 @@ const mapStateToProps = (state) => ({
     cartItems: state.cart,
 })
 
-export default connect(mapStateToProps)(SimpleCart);
+
+const mapDispatchToProps = { delete_item }
+
+export default connect(mapStateToProps,mapDispatchToProps)(SimpleCart);
