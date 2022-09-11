@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
     switch (type) {
         case 'CATEGORY':
             return { ...state, activeCategory: payload }
+        case 'INIT_CATEGORIES':
+            return { ...state, categories: payload.results }
         default:
             return state;
     }
@@ -31,4 +33,18 @@ export const reset = () => {
     return {
         type: "reset"
     }
+}
+
+// request the categories from an API
+export const getCategories = () => async dispatch => {
+    let results = await fetch(`${process.env.REACT_APP_API}/categories`);
+    let records = await results.json();
+    dispatch(setCategories(records));
+};
+
+const setCategories = (list) => {
+    return {
+    type: 'INIT_CATEGORIES',
+    payload: list
+    };
 }
